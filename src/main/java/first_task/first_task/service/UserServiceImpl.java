@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         return mysqlUserRepository.findById(userId);
     }
     @Override
-    public List<User> findAll() {e
+    public List<User> findAll() {
         return mysqlUserRepository.findAll();
     }
 }
