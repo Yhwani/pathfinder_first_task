@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class User {
-
     @Id
     @GeneratedValue
     @Column(name = "user_id")
