@@ -21,6 +21,9 @@ public class User {
     private String nameId;      // 회원 id
     private String password;    // 회원 password
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>(); //회원의 주문 목록
+
+    @OneToMany(mappedBy = "user")
+    private List<Product> products = new ArrayList<>();
 }

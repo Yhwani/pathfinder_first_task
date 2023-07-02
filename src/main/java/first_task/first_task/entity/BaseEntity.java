@@ -16,13 +16,9 @@ public abstract class BaseEntity {
 
     @Column(updatable = false)
     private LocalDateTime createAt;
-    @Column(updatable = false)
-    private String createBy;
-
     @PrePersist
     public void prePersist(){
-        LocalDateTime now = LocalDateTime.now();
-        createAt = now;
+        createAt = LocalDateTime.now();
     }
 
 }

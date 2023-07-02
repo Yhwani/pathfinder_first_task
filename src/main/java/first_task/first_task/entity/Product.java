@@ -21,4 +21,8 @@ public class Product extends BaseEntity{
     @OneToOne(mappedBy = "order_product")
     private OrderProduct orderProduct;
 
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User createBy;
+
 }

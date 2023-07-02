@@ -10,10 +10,12 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private final MysqlUserRepository mysqlUserRepository;
+
     @Autowired
     public UserServiceImpl(MysqlUserRepository mysqlUserRepository) {
         this.mysqlUserRepository = mysqlUserRepository;
     }
+
     @Override
     public void join(User user) {
         if (!mysqlUserRepository.findByName(user.getName()).isEmpty()) {

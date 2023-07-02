@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class OrderProduct {
+public class OrderProduct extends BaseEntity{
     @Id @GeneratedValue
     @Column(name = "order_product_id")
     private Long id;
