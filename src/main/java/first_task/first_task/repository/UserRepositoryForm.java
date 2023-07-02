@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class MysqlUserRepository implements UserRepository{
+public class UserRepositoryForm implements UserRepository{
 
     private final EntityManager em;
     @Override
@@ -25,9 +25,12 @@ public class MysqlUserRepository implements UserRepository{
         return em.createQuery("select u from User u", User.class)
                 .getResultList();
     }
-    public List<User> findByName(String name) {
-        return em.createQuery("select u from User u where u.name = :name", User.class)
-                .setParameter("name",name)
+    @Override
+    public List<User> validation(User user) {
+        return em.createQuery("select u from User u where u.name = :name or u.nameId = :namdId or u.password = :password", User.class)
+                .setParameter("name", user.getName())
+                .setParameter("nameId", user.getNameId())
+                .setParameter("password", user.getPassword())
                 .getResultList();
     }
 }
