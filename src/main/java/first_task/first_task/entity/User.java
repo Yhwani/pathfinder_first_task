@@ -1,17 +1,14 @@
 package first_task.first_task.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
 @Getter
 @NoArgsConstructor
 public class User {
@@ -23,7 +20,7 @@ public class User {
     private String name;        // 회원이름
     private String nameId;      // 회원 id
     private String password;    // 회원 password
-    private Long money;
+    private Long money;         // 회원이 가지고 있는 돈
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>(); // 회원의 주문 목록

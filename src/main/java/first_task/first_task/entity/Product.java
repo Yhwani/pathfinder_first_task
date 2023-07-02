@@ -3,10 +3,8 @@ package first_task.first_task.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Setter
 @Getter
 @NoArgsConstructor
 public class Product extends BaseEntity{

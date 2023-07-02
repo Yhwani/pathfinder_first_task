@@ -8,7 +8,7 @@ import java.util.List;
 
 @RepositoryDefinition(domainClass = User.class, idClass = Long.class)
 public interface ProductRepository {
-    void register(Product product);
+    void save(Product product);
     void delete(Product product);
-    List<Product> findProduct(String name);
+    List<Product> findByName(String name);
 }
