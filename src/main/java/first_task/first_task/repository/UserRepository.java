@@ -1,13 +1,9 @@
 package first_task.first_task.repository;
 
 import first_task.first_task.entity.User;
-import org.springframework.data.repository.RepositoryDefinition;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@RepositoryDefinition(domainClass = User.class, idClass = Long.class)
-public interface UserRepository {
-    void save(User user);
-    User findById(Long userId);
-    List<User> findAll();
-    List<User> validation(User user);
+@Repository
+public interface UserRepository extends JpaRepository<User,Long> {
 }

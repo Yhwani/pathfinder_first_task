@@ -1,14 +1,11 @@
 package first_task.first_task.repository;
 
 import first_task.first_task.entity.Product;
-import first_task.first_task.entity.User;
-import org.springframework.data.repository.RepositoryDefinition;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-@RepositoryDefinition(domainClass = User.class, idClass = Long.class)
-public interface ProductRepository {
-    void save(Product product);
-    void delete(Product product);
+@Repository
+public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findByName(String name);
 }
