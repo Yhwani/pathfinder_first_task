@@ -1,28 +1,20 @@
 package first_task.first_task.controller;
 
-import first_task.first_task.dto.UserDTO;
-import first_task.first_task.entity.User;
-import first_task.first_task.repository.UserRepository;
-import first_task.first_task.service.CRUDService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
+import jakarta.validation.Valid;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-public class UserController {
+import java.lang.reflect.Member;
 
-    private final CRUDService<UserRepository, User> crudService;
+@RequestMapping("/default")
+public interface UserController {
+    @GetMapping("/join")
+    String joinForm(Model model);
 
-    @Autowired
-    public UserController(CRUDService<UserRepository,User> crudService) {
-        this.crudService = crudService;
-    }
+    @PostMapping("/join")
+    String join(@Valid Member member, BindingResult result);
 
-    @GetMapping("/users/join")
-    public String joinForm(Model model) {
-        model.addAttribute("userForm", new UserDTO());
-        return "users/joinUserForm";
-    }
 }

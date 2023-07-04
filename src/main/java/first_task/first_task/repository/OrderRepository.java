@@ -1,7 +1,6 @@
 package first_task.first_task.repository;
 
-import org.springframework.stereotype.Repository;
+import first_task.first_task.entity.Order;
 
-@Repository
-public interface OrderRepository {
+public interface OrderRepository extends BaseRepository<Order>{
 }
