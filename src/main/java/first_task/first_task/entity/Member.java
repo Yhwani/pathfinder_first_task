@@ -11,10 +11,10 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-public class User {
+public class Member {
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
+    @Column(name = "member_id")
     private Long id;
 
     private String name;        // 회원이름
@@ -22,14 +22,14 @@ public class User {
     private String password;    // 회원 password
     private Long money;         // 회원이 가지고 있는 돈
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>(); // 회원의 주문 목록
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Product> products = new ArrayList<>(); // 회원이 파는 물건 목록
 
     @Builder
-    public User(String name, String nameId, String password, Long money) {
+    public Member(String name, String nameId, String password, Long money) {
         this.name = name;
         this.nameId = nameId;
         this.password = password;

@@ -1,5 +1,6 @@
 package first_task.first_task.controller;
 
+import first_task.first_task.dto.MemberDTO;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -7,14 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.lang.reflect.Member;
-
+@InterfaceTransmissionDOC
 @RequestMapping("/default")
-public interface UserController {
+public interface MemberController extends BaseController{
     @GetMapping("/join")
     String joinForm(Model model);
 
     @PostMapping("/join")
-    String join(@Valid Member member, BindingResult result);
+    String join(@Valid MemberDTO memberDTO, BindingResult result);
 
 }

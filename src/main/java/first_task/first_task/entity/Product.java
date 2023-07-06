@@ -16,11 +16,12 @@ public class Product extends BaseEntity{
     private String name;
     private Long price;
 
-    @OneToOne(mappedBy = "order_product")
-    private OrderProduct orderProduct;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User createBy; // 상품을 올린 유저
+    @JoinColumn(name = "Member_id")
+    private Member member; // 상품을 올린 유저
+
+    @OneToOne(mappedBy = "product",fetch = FetchType.LAZY)
+    private OrderProduct orderProduct;
 
 }
