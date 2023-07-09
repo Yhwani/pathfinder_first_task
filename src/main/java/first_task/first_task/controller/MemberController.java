@@ -17,4 +17,11 @@ public interface MemberController extends BaseController{
     @PostMapping("/join")
     String join(@Valid MemberDTO memberDTO, BindingResult result);
 
+    @GetMapping("/login")
+    String loginForm(Model model);
+
+    @PostMapping("/login")
+    String login(@Valid MemberDTO memberDTO, BindingResult result);
+
+
 }
