@@ -18,11 +18,9 @@ public class MemberServiceImpl extends CRUDServiceImpl<MemberRepository, Member>
     }
 
     @Override
-    public boolean loginCheck(Member member) {
-        if (memberRepository.findByNameId(member.getNameId()).isPresent()) {
-            return true;
-        } else {
-            return false;
-        }
+    public Member loginCheck(String nameId, String password) {
+        return memberRepository.findByNameId(nameId).
+                filter(m -> m.getPassword().equals(password))
+                .orElse(null);
     }
 }

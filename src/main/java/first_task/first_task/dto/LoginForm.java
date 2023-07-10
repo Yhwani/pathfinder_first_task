@@ -3,10 +3,12 @@ package first_task.first_task.dto;
 import first_task.first_task.entity.Member;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Setter;
 
 @Setter
-public class MemberDTO {
+@Getter
+public class LoginForm {
 
     @NotEmpty(message = "이름이 없습니다")
     private String name;        // 회원이름
@@ -14,13 +16,13 @@ public class MemberDTO {
     private String nameId;      // 회원 id
     @NotEmpty(message = "비밀번호가 없습니다")
     private String password;    // 회원 password
-    public MemberDTO(Member member) {
+    public LoginForm(Member member) {
         name = member.getName();
         nameId = member.getNameId();
         password = member.getPassword();
     }
     @Builder
-    public MemberDTO(String name, String nameId, String password) {
+    public LoginForm(String name, String nameId, String password) {
         this.name = name;
         this.nameId = nameId;
         this.password = password;
