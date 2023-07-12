@@ -4,14 +4,13 @@ import first_task.first_task.SessionBox;
 import first_task.first_task.dto.LoginForm;
 import first_task.first_task.entity.Member;
 import first_task.first_task.repository.MemberRepository;
-import first_task.first_task.service.CRUDService;
+import first_task.first_task.service.BaseService;
 import first_task.first_task.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,12 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("members")
 public class MemberControllerImpl extends BaseControllerImpl implements MemberController {
 
-    private final CRUDService<MemberRepository, Member> crudService;
+    private final BaseService<MemberRepository, Member> baseService;
     private final MemberService memberService;
 
     @Autowired
-    public MemberControllerImpl(CRUDService<MemberRepository, Member> crudService, MemberService memberService) {
-        this.crudService = crudService;
+    public MemberControllerImpl(BaseService<MemberRepository, Member> baseService, MemberService memberService) {
+        this.baseService = baseService;
         this.memberService = memberService;
     }
 
@@ -44,7 +43,7 @@ public class MemberControllerImpl extends BaseControllerImpl implements MemberCo
         if (result.hasErrors()) {
             return "members/createMemberForm";
         }
-        crudService.create(new Member());
+        baseService.create(new Member());
         return "redirect:/";
     }
 

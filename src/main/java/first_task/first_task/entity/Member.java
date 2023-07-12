@@ -4,18 +4,16 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
-public class Member {
-    @Id
-    @GeneratedValue
-    @Column(name = "member_id")
-    private Long id;
+public class Member extends BaseEntity {
 
     private String name;        // 회원이름
     private String nameId;      // 회원 id
@@ -24,9 +22,6 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>(); // 회원의 주문 목록
-
-    @OneToMany(mappedBy = "member")
-    private List<Product> products = new ArrayList<>(); // 회원이 파는 물건 목록
 
     @Builder
     public Member(String name, String nameId, String password, Long money) {

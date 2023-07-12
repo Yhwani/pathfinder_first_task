@@ -9,26 +9,23 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CRUDServiceImpl<T1,T2> implements CRUDService<T1,T2>{
-
-    private final BaseRepository<T2> baseRepository;
+public abstract class BaseService<EN>{
+    private final BaseRepository<EN> baseRepository;
     @Autowired
-    public CRUDServiceImpl(BaseRepository<T2> baseRepository) {
+    public BaseService(BaseRepository<EN> baseRepository) {
         this.baseRepository = baseRepository;
     }
-    @Override
-    public void create(T2 t2) {
-        baseRepository.save(t2);
+
+    public void create(EN en) {
+        baseRepository.save(en);
     }
 
-    @Override
     @Transactional(readOnly = true)
-    public List<T2> read() {
+    public List<EN> read() {
         return baseRepository.findAll();
     }
 
-    @Override
-    public void delete(T2 t2) {
-        baseRepository.delete(t2);
+    public void delete(EN en) {
+        baseRepository.delete(en);
     }
 }
