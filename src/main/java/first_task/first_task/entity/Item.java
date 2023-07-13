@@ -11,7 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Item extends BaseEntity{
 
-
     private String name;
     private Long price;
 

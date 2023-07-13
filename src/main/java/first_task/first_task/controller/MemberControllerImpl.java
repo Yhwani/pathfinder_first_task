@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("members")
 public class MemberControllerImpl extends BaseControllerImpl implements MemberController {
 
-    private final BaseService<MemberRepository, Member> baseService;
+    private final BaseService<Member> baseService;
     private final MemberService memberService;
 
     @Autowired
-    public MemberControllerImpl(BaseService<MemberRepository, Member> baseService, MemberService memberService) {
+    public MemberControllerImpl(BaseService<Member> baseService, MemberService memberService) {
         this.baseService = baseService;
         this.memberService = memberService;
     }
