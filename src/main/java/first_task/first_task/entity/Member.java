@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@NoArgsConstructor
 public class Member extends BaseEntity {
 
     private String name;        // 회원이름
@@ -22,11 +21,15 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>(); // 회원의 주문 목록
 
+    private RoleType roleType;
+
     @Builder
-    public Member(String name, String nameId, String password, Long money) {
+    public Member(String name, String nameId, String password, Long money, RoleType roleType) {
         this.name = name;
         this.nameId = nameId;
         this.password = password;
         this.money = money;
+        this.roleType = roleType;
     }
+
 }

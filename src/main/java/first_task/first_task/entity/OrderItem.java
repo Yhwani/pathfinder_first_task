@@ -13,7 +13,7 @@ import lombok.Setter;
 public class OrderItem extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "orders_id")
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
