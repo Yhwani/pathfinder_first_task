@@ -1,4 +1,4 @@
-package first_task.first_task.controller;
+package first_task.first_task.controller.Interfaces;
 
 
 import first_task.first_task.entity.Order;
