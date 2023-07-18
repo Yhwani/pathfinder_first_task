@@ -1,4 +1,4 @@
-package first_task.first_task.controller;
+package first_task.first_task.controller.interfaces;
 
 @InterfaceTransmissionDOC
 public interface BaseController {

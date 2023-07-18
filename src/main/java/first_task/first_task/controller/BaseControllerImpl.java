@@ -1,9 +1,11 @@
 package first_task.first_task.controller;
 
+import first_task.first_task.controller.interfaces.BaseController;
+import first_task.first_task.controller.interfaces.InterfaceTransmissionDOC;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 @InterfaceTransmissionDOC
-public class BaseControllerImpl implements BaseController{
+public class BaseControllerImpl implements BaseController {
 
     @Override
     @PostMapping("/delete/{id_}")

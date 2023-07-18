@@ -1,6 +1,7 @@
 package first_task.first_task.controller;
 
 import first_task.first_task.SessionBox;
+import first_task.first_task.controller.interfaces.MemberController;
 import first_task.first_task.dto.Member.JoinDto;
 import first_task.first_task.dto.Member.LoginDto;
 import first_task.first_task.entity.Member;

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface MemberQueryDslRepository {
     List<Member> findMember(JoinDto joinDto);
+
 }

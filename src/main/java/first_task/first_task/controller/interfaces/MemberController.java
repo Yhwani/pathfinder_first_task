@@ -1,8 +1,8 @@
-package first_task.first_task.controller;
+package first_task.first_task.controller.interfaces;
 
+import first_task.first_task.controller.interfaces.BaseController;
 import first_task.first_task.dto.Member.JoinDto;
 import first_task.first_task.dto.Member.LoginDto;
-import first_task.first_task.entity.Member;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/default")
-public interface MemberController extends BaseController{
+public interface MemberController extends BaseController {
     @GetMapping("/join")
     String joinDto(@ModelAttribute JoinDto joinDto);
 
