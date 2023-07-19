@@ -1,4 +1,4 @@
 package first_task.first_task.service.interfaces;
 
-public interface OrderService {
+public interface OrderService<ENTITY> extends BaseService<ENTITY> {
 }

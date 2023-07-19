@@ -5,7 +5,7 @@ import first_task.first_task.controller.Interfaces.MemberController;
 import first_task.first_task.dto.Member.JoinDto;
 import first_task.first_task.dto.Member.LoginDto;
 import first_task.first_task.entity.Member;
-import first_task.first_task.repository.BaseRepository;
+import first_task.first_task.service.BaseServiceImpl;
 import first_task.first_task.service.interfaces.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberControllerImpl extends BaseControllerImpl implements MemberController {
 
     private final MemberService memberService;
-    private final BaseRepository<Member,Long> baseRepository;
 
     @Override
     @GetMapping("/join")
@@ -41,7 +40,7 @@ public class MemberControllerImpl extends BaseControllerImpl implements MemberCo
         if (!memberService.joinCheck(joinDto)){
             return "members/createMemberForm";
         }
-        baseRepository.save(joinDto.toEntity());
+        memberService.create(joinDto.toEntity());
         return "redirect:/";
     }
 

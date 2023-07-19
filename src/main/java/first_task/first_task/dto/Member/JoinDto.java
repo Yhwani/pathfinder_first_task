@@ -34,5 +34,4 @@ public class JoinDto {
                 .roleType(RoleType.Member)
                 .build();
     }
-
 }

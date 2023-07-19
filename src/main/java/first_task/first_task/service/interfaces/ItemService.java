@@ -1,4 +1,4 @@
 package first_task.first_task.service.interfaces;
 
-public interface ItemService {
+public interface ItemService<ENTITY> extends BaseService<ENTITY>{
 }

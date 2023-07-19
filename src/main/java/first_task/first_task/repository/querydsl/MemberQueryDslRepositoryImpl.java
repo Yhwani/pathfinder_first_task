@@ -1,5 +1,6 @@
 package first_task.first_task.repository.querydsl;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import first_task.first_task.dto.Member.JoinDto;
 import first_task.first_task.entity.Member;
@@ -11,13 +12,13 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
-public class MemberQueryDslRepositoryImpl implements MemberQueryDslRepository {
+public class MemberQueryDslRepositoryImpl<ATT> implements MemberQueryDslRepository {
 
     private final JPAQueryFactory queryFactory;
+    private final QMember qMember = QMember.member;
 
     @Override
     public List<Member> findMember(JoinDto joinDto) {
-        QMember qMember = QMember.member;
         return queryFactory.selectFrom(qMember)
                 .where(
                         qMember.name.eq(joinDto.getName()),
@@ -25,4 +26,13 @@ public class MemberQueryDslRepositoryImpl implements MemberQueryDslRepository {
                         qMember.password.eq(joinDto.getPassword()))
                 .fetch();
     }
+
+    private BooleanExpression nameEq(String nameCond) {
+        return nameCond != null ? qMember.name.eq(nameCond) : null;
+    }
+
+    private BooleanExpression nameIdEq(String nameIdCond) {
+        return nameIdCond != null ? qMember.nameId.eq(nameIdCond) : null;
+    }
+
 }

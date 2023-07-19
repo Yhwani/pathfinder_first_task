@@ -5,7 +5,6 @@ import first_task.first_task.entity.Member;
 import first_task.first_task.repository.BaseRepository;
 import first_task.first_task.repository.MemberRepository;
 import first_task.first_task.repository.querydsl.MemberQueryDslRepository;
-import first_task.first_task.service.interfaces.BaseService;
 import first_task.first_task.service.interfaces.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
-public class MemberServiceImpl extends BaseService<Member,Long> implements MemberService {
+public class MemberServiceImplImpl extends BaseServiceImpl<Member,Long> implements MemberService<Member> {
     private final MemberRepository memberRepository;
     private final MemberQueryDslRepository memberQueryDslRepository;
 
     @Autowired
-    public MemberServiceImpl(BaseRepository<Member, Long> baseRepository, MemberRepository memberRepository, MemberQueryDslRepository memberQueryDslRepository) {
+    public MemberServiceImplImpl(BaseRepository<Member, Long> baseRepository, MemberRepository memberRepository, MemberQueryDslRepository memberQueryDslRepository) {
         super(baseRepository);
         this.memberRepository = memberRepository;
         this.memberQueryDslRepository = memberQueryDslRepository;
