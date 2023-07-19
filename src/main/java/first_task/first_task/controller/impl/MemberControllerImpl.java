@@ -1,6 +1,6 @@
-package first_task.first_task.controller;
+package first_task.first_task.controller.impl;
 
-import first_task.first_task.SessionBox;
+import first_task.first_task.controller.impl.BaseControllerImpl;
 import first_task.first_task.controller.interfaces.MemberController;
 import first_task.first_task.dto.Member.JoinDto;
 import first_task.first_task.dto.Member.LoginDto;
@@ -64,7 +64,7 @@ public class MemberControllerImpl extends BaseControllerImpl implements MemberCo
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute(SessionBox.LOGIN_MEMBER,loginMember);
+        session.setAttribute("login-member",loginMember);
         return "redirect:/";
     }
 }

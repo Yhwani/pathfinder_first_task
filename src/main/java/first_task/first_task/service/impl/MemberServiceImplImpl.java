@@ -1,10 +1,11 @@
-package first_task.first_task.service;
+package first_task.first_task.service.impl;
 
 import first_task.first_task.dto.Member.JoinDto;
 import first_task.first_task.entity.Member;
 import first_task.first_task.repository.BaseRepository;
 import first_task.first_task.repository.MemberRepository;
 import first_task.first_task.repository.querydsl.MemberQueryDslRepository;
+import first_task.first_task.service.impl.BaseServiceImpl;
 import first_task.first_task.service.interfaces.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

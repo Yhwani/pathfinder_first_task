@@ -1,4 +1,4 @@
-package first_task.first_task.controller;
+package first_task.first_task.controller.impl;
 
 import first_task.first_task.controller.interfaces.BaseController;
 import first_task.first_task.controller.interfaces.InterfaceTransmissionDOC;

@@ -1,4 +1,4 @@
-package first_task.first_task.service;
+package first_task.first_task.service.impl;
 
 import first_task.first_task.repository.BaseRepository;
 import first_task.first_task.service.interfaces.BaseService;
