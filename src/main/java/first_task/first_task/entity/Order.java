@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "orders")
 @NoArgsConstructor
 public class Order extends BaseEntity {

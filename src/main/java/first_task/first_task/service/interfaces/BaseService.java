@@ -1,7 +1,4 @@
 package first_task.first_task.service.interfaces;
-
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 public interface BaseService<ENTITY> {

@@ -5,5 +5,5 @@ import first_task.first_task.entity.Member;
 
 public interface MemberService {
     public Member loginCheck(String nameId, String password);
-    public boolean joinCheck(JoinDto joinDto);
+    public void join(JoinDto joinDto);
 }

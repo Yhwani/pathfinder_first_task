@@ -2,26 +2,28 @@ package first_task.first_task.service.impl;
 
 import first_task.first_task.dto.Member.JoinDto;
 import first_task.first_task.entity.Member;
-import first_task.first_task.repository.BaseRepository;
+import first_task.first_task.exception.ErrorCode;
+import first_task.first_task.exception.JoinException;
 import first_task.first_task.repository.MemberRepository;
 import first_task.first_task.repository.querydsl.MemberQueryDslRepository;
-import first_task.first_task.service.impl.BaseServiceImpl;
 import first_task.first_task.service.interfaces.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
-public class MemberServiceImplImpl extends BaseServiceImpl<Member,Long> implements MemberService {
+public class MemberServiceImpl extends BaseServiceImpl<Member,Long> implements MemberService {
     private final MemberRepository memberRepository;
     private final MemberQueryDslRepository memberQueryDslRepository;
     @Autowired
-    public MemberServiceImplImpl(
-            BaseRepository<Member, Long> baseRepository,
+    public MemberServiceImpl(
+            @Qualifier("member")JpaRepository<Member, Long> jpaRepository,
             MemberRepository memberRepository,
             MemberQueryDslRepository memberQueryDslRepository) {
-        super(baseRepository);
+        super(jpaRepository);
         this.memberRepository = memberRepository;
         this.memberQueryDslRepository = memberQueryDslRepository;
     }
@@ -33,7 +35,14 @@ public class MemberServiceImplImpl extends BaseServiceImpl<Member,Long> implemen
                 .orElse(null);
     }
     @Override
-    public boolean joinCheck(JoinDto joinDto) {
-        return !memberQueryDslRepository.findMember(joinDto).isEmpty();
+    @Transactional(readOnly = false)
+    public void join(JoinDto joinDto) {
+        memberRepository.findByNameId(joinDto.getNameId())
+                .ifPresent( joinDto1 -> {
+                    throw new JoinException(ErrorCode.DUPLICATED_USER_NAME, String.format("NameId : %s", joinDto1.getNameId()));
+                });
+        memberRepository.save(joinDto.toEntity());
     }
+
+
 }
