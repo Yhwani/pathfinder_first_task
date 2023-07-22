@@ -10,22 +10,29 @@ import first_task.first_task.service.interfaces.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
-public class MemberServiceImpl extends BaseServiceImpl<Member,Long> implements MemberService {
+public class MemberServiceImpl extends BaseServiceImpl<Member, Long> implements MemberService, UserDetailsService {
+
     private final MemberRepository memberRepository;
     private final MemberQueryDslRepository memberQueryDslRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
     public MemberServiceImpl(
-            @Qualifier("member")JpaRepository<Member, Long> jpaRepository,
+            @Qualifier("member") JpaRepository<Member, Long> jpaRepository,
             MemberRepository memberRepository,
-            MemberQueryDslRepository memberQueryDslRepository) {
+            MemberQueryDslRepository memberQueryDslRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         super(jpaRepository);
         this.memberRepository = memberRepository;
         this.memberQueryDslRepository = memberQueryDslRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -34,14 +41,17 @@ public class MemberServiceImpl extends BaseServiceImpl<Member,Long> implements M
                 filter(m -> m.getPassword().equals(password))
                 .orElse(null);
     }
+
     @Override
     @Transactional(readOnly = false)
-    public void join(JoinDto joinDto) {
-        memberRepository.findByNameId(joinDto.getNameId())
-                .ifPresent( joinDto1 -> {
-                    throw new JoinException(ErrorCode.DUPLICATED_USER_NAME, String.format("NameId : %s", joinDto1.getNameId()));
-                });
-        memberRepository.save(joinDto.toEntity());
+    public Long join(JoinDto joinDto) {
+        return memberRepository.save(joinDto.toEntity()).getId();
+    }
+
+    @Override
+    public Member loadUserByUsername(String nameId) throws UsernameNotFoundException {
+        return memberRepository.findByNameId(nameId)
+                .orElseThrow(() -> new IllegalArgumentException(nameId));
     }
 
 

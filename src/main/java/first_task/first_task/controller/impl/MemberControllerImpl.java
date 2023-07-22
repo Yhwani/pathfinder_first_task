@@ -38,7 +38,7 @@ public class MemberControllerImpl extends BaseControllerImpl implements MemberCo
             return "members/createMemberForm";
         }
         memberService.join(joinDto);
-        return "redirect:/";
+        return "redirect:/members/createMemberForm.html";
     }
 
     @Override
