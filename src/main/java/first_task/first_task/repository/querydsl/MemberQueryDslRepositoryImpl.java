@@ -1,7 +1,7 @@
 package first_task.first_task.repository.querydsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import first_task.first_task.dto.Member.JoinDto;
+import first_task.first_task.dto.member.JoinDto;
 import first_task.first_task.entity.Member;
 import first_task.first_task.entity.QMember;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package first_task.first_task.dto.Member;
+package first_task.first_task.dto.member;
 
 import first_task.first_task.entity.Member;
 import first_task.first_task.entity.RoleType;
