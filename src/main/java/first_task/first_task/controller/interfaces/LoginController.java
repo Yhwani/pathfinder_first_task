@@ -1,23 +1,23 @@
 package first_task.first_task.controller.interfaces;
 
-import first_task.first_task.dto.member.JoinDto;
-import first_task.first_task.dto.member.LoginDto;
+import first_task.first_task.dto.request.RequestJoin;
+import first_task.first_task.dto.request.RequestLogin;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public interface LoginController extends BaseController {
     @GetMapping("/join")
-    String joinMessage();
+    String joinInfo();
 
     @PostMapping("/join")
-    String join(JoinDto joinDto);
+    String requestJoin(RequestJoin requestJoin);
 
     @GetMapping("/login")
-    String loginMessage();
+    String loginInfo();
 
     @PostMapping("/login")
-    String login(LoginDto loginDto, HttpServletRequest request);
+    String requestLogin(RequestLogin requestLogin, HttpServletRequest request);
 
 
 }

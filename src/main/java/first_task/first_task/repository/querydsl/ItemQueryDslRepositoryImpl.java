@@ -2,12 +2,10 @@ package first_task.first_task.repository.querydsl;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import first_task.first_task.dto.item.ItemDto;
 import first_task.first_task.dto.item.SearchDto;
 import first_task.first_task.entity.Item;
 import first_task.first_task.entity.QItem;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;

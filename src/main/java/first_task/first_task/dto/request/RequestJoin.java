@@ -1,4 +1,4 @@
-package first_task.first_task.dto.member;
+package first_task.first_task.dto.request;
 
 import first_task.first_task.entity.Member;
 import first_task.first_task.entity.RoleType;
@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class JoinDto {
+public class RequestJoin {
     @Size(min = 3, max = 25)
     @NotEmpty(message = "이름이 없습니다")
     private String name;        // 회원이름
@@ -19,7 +19,7 @@ public class JoinDto {
     @NotEmpty(message = "역할이 없습니다.")
     private RoleType roleType;  // 회원 역할
     @Builder
-    public JoinDto(String name, String nameId, String password, RoleType roleType) {
+    public RequestJoin(String name, String nameId, String password, RoleType roleType) {
         this.name = name;
         this.nameId = nameId;
         this.password = password;
@@ -30,6 +30,15 @@ public class JoinDto {
                 .name(name)
                 .nameId(nameId)
                 .password(password)
+                .money(0L)
+                .roleType(RoleType.Member)
+                .build();
+    }
+    public Member toEntity(String encodedPassword) {
+        return Member.builder()
+                .name(name)
+                .nameId(nameId)
+                .password(encodedPassword)
                 .money(0L)
                 .roleType(RoleType.Member)
                 .build();

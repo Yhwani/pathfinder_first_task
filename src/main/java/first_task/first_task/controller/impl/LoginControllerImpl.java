@@ -1,44 +1,47 @@
 package first_task.first_task.controller.impl;
 
 import first_task.first_task.controller.interfaces.LoginController;
-import first_task.first_task.dto.member.JoinDto;
-import first_task.first_task.dto.member.LoginDto;
+import first_task.first_task.dto.request.RequestJoin;
+import first_task.first_task.dto.request.RequestLogin;
 import first_task.first_task.entity.Member;
 import first_task.first_task.service.interfaces.MemberService;
+import first_task.first_task.util.JwtTokenUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class LoginControllerImpl extends BaseControllerImpl implements LoginController {
 
     private final MemberService memberService;
+
     @Override
     @GetMapping("/join")
-    public String joinMessage() {
+    public String joinInfo() {
         return "회원가입 페이지";
     }
     @Override
     @PostMapping("/join")
-    public String join(JoinDto joinDto) {
-        memberService.join(joinDto);
-        return String.format("가입을 축하드립니다. %s님", joinDto.getName());
+    public String requestJoin(@RequestBody RequestJoin requestJoin) {
+        memberService.join(requestJoin);
+        return String.format("가입을 축하드립니다. %s님", requestJoin.getName());
     }
-
     @Override
     @GetMapping("/login")
-    public String loginMessage() {
-        return "members/loginForm";
+    public String loginInfo() {
+        return "로그인 페이지";
     }
 
     @Override
     @PostMapping("/login")
-    public String login(LoginDto loginDto, HttpServletRequest request) {
-        Member loginMember = memberService.loginCheck(loginDto);
-        return (loginMember != null) ?
-                String.format("어서오세요. %s님", loginMember.getName()) : "로그인 실패";
+    public String requestLogin(@RequestBody RequestLogin requestLogin, HttpServletRequest request) {
+        Member loginMember = memberService.loginCheck(requestLogin);
+        if (loginMember == null) {
+            return "아이디 또는 비밀번호를 틀렸습니다";
+        }
+        return JwtTokenUtil.createToken(loginMember.getNameId(), "my-secret-key-123123", 1000 * 60 * 60);
     }
 }

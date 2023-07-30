@@ -15,4 +15,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findAllByPrice(Long price);
 
     List<Item> findAllByQuantity(Long quantity);
+
 }

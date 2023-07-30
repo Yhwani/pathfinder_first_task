@@ -12,6 +12,5 @@ import java.util.List;
 public interface ItemQueryDslRepository {
     List<Item> searchAttribute(SearchDto searchDto);
     PageImpl<ItemDto> itemPage(Pageable pageable);
-
     BooleanBuilder judgeAttribute(SearchDto searchDto);
 }
